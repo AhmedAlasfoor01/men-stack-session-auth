@@ -9,6 +9,8 @@ const morgan = require("morgan");
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
+const authController = require("./controllers/auth.js");
+
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -22,12 +24,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
+//so the auth be coonected with the server we should use router in this way 
+
 
 //public route = login page and registiration 
 
-app.length("/", async(req,res)=>{
+app.get("/", async(req,res)=>{
     res.render("index.ejs")
 })
+app.use("/auth", authController); 
 
 //protected route
 
