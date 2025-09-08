@@ -23,6 +23,14 @@ app.use(methodOverride("_method"));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
 
+//public route = login page and registiration 
+
+app.length("/", async(req,res)=>{
+    res.render("index.ejs")
+})
+
+//protected route
+
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
